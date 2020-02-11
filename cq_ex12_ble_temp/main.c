@@ -181,7 +181,7 @@ static void advertising_init(uint8_t *payload, int len)
     	memset(m_beacon_info + 2, 0, APP_ADV_DATA_LENGTH);
     	len = APP_ADV_DATA_LENGTH + 2;
 	}
-	NRF_LOG_INFO("m_beacon_info(%d) %02x %02x %02x %02x %02x %02x",len,m_beacon_info[0],m_beacon_info[1],m_beacon_info[2],m_beacon_info[3],m_beacon_info[4],m_beacon_info[5]);
+	NRF_LOG_INFO("m_beacon_info %02x %02x %02x %02x %02x %02x",m_beacon_info[0],m_beacon_info[1],m_beacon_info[2],m_beacon_info[3],m_beacon_info[4],m_beacon_info[5]);
     
     ble_advdata_manuf_data_t manuf_specific_data;
     manuf_specific_data.company_identifier = APP_COMPANY_IDENTIFIER;
