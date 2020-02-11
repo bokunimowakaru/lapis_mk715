@@ -7,6 +7,7 @@
 
 #include "main.c"
 #include "i2c_si7021.c"
+#include "nrf_delay.h"
 
 void setup(){
     printf("cq_ex03_hum\n");

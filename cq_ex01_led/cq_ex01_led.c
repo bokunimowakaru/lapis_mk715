@@ -1,4 +1,5 @@
 ﻿#include "main.c"
+#include "nrf_delay.h"
 
 void setup(){
     printf("cq_ex01_led\n");

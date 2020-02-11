@@ -1,5 +1,6 @@
 ﻿#include "main.c"
 #include "nrf_temp.h"
+#include "nrf_delay.h"
 
 float getTemp(){
     int i=0;
