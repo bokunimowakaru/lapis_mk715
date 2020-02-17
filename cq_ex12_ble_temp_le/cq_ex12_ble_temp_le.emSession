@@ -11,9 +11,9 @@
  <Memory3/>
  <Memory4/>
  <Project>
-  <ProjectSessionItem path="cq_ex03_hum"/>
-  <ProjectSessionItem path="cq_ex03_hum;cq_ex03_hum"/>
-  <ProjectSessionItem path="cq_ex03_hum;cq_ex03_hum;Application"/>
+  <ProjectSessionItem path="cq_ex12_ble_temp_le"/>
+  <ProjectSessionItem path="cq_ex12_ble_temp_le;cq_ex12_ble_temp_le"/>
+  <ProjectSessionItem path="cq_ex12_ble_temp_le;cq_ex12_ble_temp_le;Application"/>
  </Project>
  <Register1/>
  <Register2/>
@@ -38,7 +38,7 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="5" useTextEdit="1" useBinaryEdit="0" left="0" path="cq_ex03_hum.c" selected="1" top="0" codecName="UTF-8"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="62" y="10" useTextEdit="1" useBinaryEdit="0" left="0" path="cq_ex12_ble_temp_le.c" selected="1" top="0" codecName="UTF-8"/>
  </Files>
- <ARMCrossStudioWindow activeProject="cq_ex03_hum" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3199"/>
+ <ARMCrossStudioWindow activeProject="cq_ex12_ble_temp_le" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Release" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>
