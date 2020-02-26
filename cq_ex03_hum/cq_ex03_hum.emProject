@@ -69,6 +69,7 @@
       <file file_name="../../modules/nrfx/drivers/src/nrfx_uarte.c" />
     </folder>
     <folder Name="Application">
+      <file file_name="./i2c_si7021.c" />
       <file file_name="cq_ex03_hum.c" />
       <file file_name="config/sdk_config.h" />
     </folder>

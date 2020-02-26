@@ -10,10 +10,10 @@ SILICON LABS社 Si7021
 
 // 参考資料：~/nRF5_SDK/examples/peripheral/twi_sensor
 
-#include "boards.h"
+#include "i2c_si7021.h"
+
 #include "nrf_drv_twi.h"
 #include "nrf_delay.h"
-// #include "nrf_gpio.h"
 
 #define I2C_si7021     0x40             // Si7021 の I2C アドレス
 #define I2C_si7021_SCL 26               // Si7021用 の SCLピン
