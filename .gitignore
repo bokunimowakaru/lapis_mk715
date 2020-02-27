@@ -58,3 +58,8 @@ dkms.conf
 *.jlink
 Output/
 *.BAK
+cq_ex01_led.emSession
+cq_ex02_temp.emSession
+cq_ex03_hum.emSession
+cq_ex12_ble_temp.emSession
+cq_ex12_ble_teml_le.emSession
