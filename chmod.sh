@@ -6,4 +6,3 @@ chmod a-x */*.h
 chmod a-x */*.txt
 chmod a-x */*.xml
 chmod a-x */config/*.h
-git rm -r --cached *.emSession

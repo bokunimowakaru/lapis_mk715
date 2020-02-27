@@ -338,6 +338,8 @@ static void idle_state_handle(void)
 int main(void)
 {
     // Initialize.
+    bsp_board_init(BSP_INIT_LEDS);
+    bsp_board_init(BSP_INIT_BUTTONS);
     log_init();
     NRF_LOG_RAW_INFO("\n");
     timers_init();
