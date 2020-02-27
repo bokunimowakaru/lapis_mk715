@@ -78,11 +78,6 @@ nRF5_SDK_15.3.0_59ac345.zip または nRF5_SDK_16.0.0_98a08e2.zip
 #include "nrf_log.h"
 #include "nrf_log_ctrl.h"
 #include "nrf_log_default_backends.h"
-/*
-#include "nrf.h"
-#include "nrf_drv_timer.h"
-#include "bsp.h"
-*/
 
 #define APP_BLE_CONN_CFG_TAG            1                                  /**< A tag identifying the SoftDevice BLE configuration. */
 
@@ -130,25 +125,6 @@ static uint8_t m_beacon_info[APP_BEACON_INFO_LENGTH] =                    /**< I
     APP_ADV_DATA_LENGTH, // Manufacturer specific information. Specifies the length of the
                          // manufacturer specific data in this implementation.
 };
-
-/*
-void timer_event_handler(nrf_timer_event_t event_type, void* p_context)
-{
-    static uint32_t i;
-    uint32_t led_to_invert = ((i++) % LEDS_NUMBER);
-
-    switch (event_type)
-    {
-        case NRF_TIMER_EVENT_COMPARE0:
-            bsp_board_led_invert(led_to_invert);
-            break;
-
-        default:
-            //Do nothing.
-            break;
-    }
-}
-*/
 
 /**@brief Callback function for asserts in the SoftDevice.
  *
@@ -339,24 +315,10 @@ int main(void)
 {
     // Initialize.
     log_init();
+    NRF_LOG_RAW_INFO("\n");
     timers_init();
     leds_init();
     power_management_init();
-/*
-    uint32_t time_ms = 500; //Time(in miliseconds) between consecutive compare events.
-    uint32_t time_ticks;
-    uint32_t err_code = NRF_SUCCESS;
-
-    nrf_drv_timer_config_t timer_cfg = NRF_DRV_TIMER_DEFAULT_CONFIG;
-    err_code = nrf_drv_timer_init(&TIMER_EVENT, &timer_cfg, timer_event_handler);
-    APP_ERROR_CHECK(err_code);
-    time_ticks = nrf_drv_timer_ms_to_ticks(&TIMER_EVENT, time_ms);
-
-    nrf_drv_timer_extended_compare(
-         &TIMER_EVENT, NRF_TIMER_CC_CHANNEL0, time_ticks, NRF_TIMER_SHORT_COMPARE0_CLEAR_MASK, true);
-
-    nrf_drv_timer_enable(&TIMER_EVENT);
-*/
 
     // Start execution.
     bsp_board_leds_off();

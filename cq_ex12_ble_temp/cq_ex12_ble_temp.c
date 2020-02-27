@@ -27,7 +27,7 @@ float getTemp(){                                // 内蔵温度センサ値の�
 }
 
 void setup(){                                   // 起動時に1回だけ実行する関数
-    printf("cq_ex12_ble_temp");                 // タイトルのシリアル出力
+    NRF_LOG_INFO("cq_ex12_ble_temp");           // タイトルのシリアル出力
     nrf_temp_init();                            // 内蔵温度センサの初期化
     ble_stack_init();                           // BLEスタックを初期化
 }

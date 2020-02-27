@@ -339,6 +339,7 @@ int main(void)
 {
     // Initialize.
     log_init();
+    NRF_LOG_RAW_INFO("\n");
     timers_init();
     leds_init();
     power_management_init();
