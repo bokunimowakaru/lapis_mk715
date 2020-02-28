@@ -251,7 +251,7 @@ while True:
             if sensors:
                 printval(sensors, 'ID', 0, '')
                 printval(sensors, 'SEQ', 0, '')
-                printval(sensors, 'Button', 1, '')
+                printval(sensors, 'Button', 0, '')
                 printval(sensors, 'Temperature', 2, '℃')
                 printval(sensors, 'Humidity', 2, '%')
                 printval(sensors, 'Pressure', 3, 'hPa')
