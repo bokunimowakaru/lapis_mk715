@@ -3,16 +3,6 @@ Lapis MK71511/MK71521用 サンプル・プログラム Example 1
 
 ディップスイッチDIP1～3の状態に応じて、LED4～LED7を点滅制御します。
 
-DIP1(GPIO P13): bsp_board_button_state_get(0);
-DIP2(GPIO P14): bsp_board_button_state_get(1);
-DIP3(GPIO P15): bsp_board_button_state_get(2);
-DIP4(GPIO P16): bsp_board_button_state_get(3);
-
-LED4(GPIO P17): bsp_board_led_on(0); bsp_board_led_off(0);
-LED5(GPIO P18): bsp_board_led_on(1); bsp_board_led_off(1);
-LED6(GPIO P19): bsp_board_led_on(2); bsp_board_led_off(2);
-LED7(GPIO P20): bsp_board_led_on(3); bsp_board_led_off(3);
-
                                           Copyright (c) 2020 Wataru KUNINO
                                           https://bokunimo.net/bokunimowakaru/
 *******************************************************************************/
@@ -40,3 +30,31 @@ void loop(){                                    // 繰り返し実行する関�
     }
     bsp_board_leds_off();                       // 全てのLEDを消灯
 }
+
+/*******************************************************************************
+DIPスイッチの状態を取得する
+
+    DIP1(GPIO P13): bsp_board_button_state_get(0);
+    DIP2(GPIO P14): bsp_board_button_state_get(1);
+    DIP3(GPIO P15): bsp_board_button_state_get(2);
+    DIP4(GPIO P16): bsp_board_button_state_get(3);
+
+********************************************************************************
+LEDをONする／OFFする
+
+    LED4(GPIO P17): bsp_board_led_on(0); bsp_board_led_off(0);
+    LED5(GPIO P18): bsp_board_led_on(1); bsp_board_led_off(1);
+    LED6(GPIO P19): bsp_board_led_on(2); bsp_board_led_off(2);
+    LED7(GPIO P20): bsp_board_led_on(3); bsp_board_led_off(3);
+
+********************************************************************************
+動作例
+
+    cq_ex01_led
+    Hello, world!
+    Port(0)=1
+    Port(1)=1
+    Port(2)=1
+    Port(3)=1
+
+*******************************************************************************/

@@ -233,8 +233,16 @@ while True:
                 sensors['SEQ'] = payval(9)
                 sensors['RSSI'] = dev.rssi
 
-            if isRohmMedal == 'ESP32 Si7021' or isRohmMedal == 'Nordic nRF5':
+            if isRohmMedal == 'ESP32 Si7021':
                 sensors['ID'] = hex(payval(2,2))
+                sensors['Temperature'] = -45 + 175 * payval(4,2) / 65536
+                sensors['Humidity'] = payval(7,2) / 65536 * 100
+                sensors['SEQ'] = payval(9)
+                sensors['RSSI'] = dev.rssi
+
+            if isRohmMedal == 'Nordic nRF5':
+                sensors['ID'] = hex(payval(2,2))
+                sensors['Button'] = format(payval(6), '4b')
                 sensors['Temperature'] = -45 + 175 * payval(4,2) / 65536
                 sensors['Humidity'] = payval(7,2) / 65536 * 100
                 sensors['SEQ'] = payval(9)
@@ -243,6 +251,7 @@ while True:
             if sensors:
                 printval(sensors, 'ID', 0, '')
                 printval(sensors, 'SEQ', 0, '')
+                printval(sensors, 'Button', 0, '')
                 printval(sensors, 'Temperature', 2, '℃')
                 printval(sensors, 'Humidity', 2, '%')
                 printval(sensors, 'Pressure', 3, 'hPa')

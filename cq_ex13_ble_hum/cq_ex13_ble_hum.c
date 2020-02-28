@@ -31,6 +31,9 @@ void loop(){                                    // 繰り返し実行する関�
     uint16_t humi16 = (uint16_t)(humi * 65536./100.); // 2バイトに変換
     payload[0] = (uint8_t)(temp16 % 256);       // 温度値の下位バイトを代入
     payload[1] = (uint8_t)(temp16 / 256);       // 温度値の上位バイトを代入
+    for(int i=0;i<4;i++){                       // DIPスイッチ0～3の状態を取得
+        payload[2] += (bsp_board_button_state_get(i) << (3 - i) );
+    }
     payload[3] = (uint8_t)(humi16 % 256);       // 湿度値の下位バイトを代入
     payload[4] = (uint8_t)(humi16 / 256);       // 湿度値の上位バイトを代入
     payload[5] = (uint8_t)seq;                  // 送信番号を代入
@@ -44,3 +47,35 @@ void loop(){                                    // 繰り返し実行する関�
     seq++;                                      // 送信番号に1を加算
     nrf_delay_ms(INTERVAL_ms);                  // 送信間隔の待ち時間処理
 }
+
+/*******************************************************************************
+動作例
+
+    <info> app_timer: RTC: initialized.
+    <info> app: (Started)
+    <info> app: cq_ex13_ble_hum
+    <info> app: ble_stack_init
+    <info> app: (loop)
+    <info> app: advertising_init
+    <info> app: m_beacon_info 22 5F 05 C4 B8 00
+    <info> app: interval_ms 1000 (1600)
+    <info> app: advertising_start
+    <info> app: advertising_stop
+
+********************************************************************************
+受信例
+
+    pi@raspberrypi:~ $ git clone http://github.com/bokunimowakaru/lapis_mk715
+    pi@raspberrypi:~ $ cd lapis_mk715/tools
+    pi@raspberrypi:~/lapis_mk715/tools $ sudo ./ble_logger_rohm.py
+
+    Device xx:xx:xx:xx:xx:xx (random), RSSI=-59 dB, Connectable=False
+        isRohmMedal   = Nordic nRF5
+        ID            = 0x59
+        SEQ           = 0
+        Button        = 0101
+        Temperature   = 20.03 ℃
+        Humidity      = 72.17 %
+        RSSI          = -59 dB
+
+*******************************************************************************/
