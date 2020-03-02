@@ -14,7 +14,7 @@
 # iot_exp_press_ble や iot_exp_sensorShield_ble が送信するビーコンを受信し
 # ビーコンに含まれる、温度センサ値と気圧センサ値を表示します。
 #
-#                                               Copyright (c) 2019 Wataru KUNINO
+#                                          Copyright (c) 2019-2020 Wataru KUNINO
 ################################################################################
 
 #【インストール方法】
@@ -242,7 +242,7 @@ while True:
 
             if isRohmMedal == 'Nordic nRF5':
                 sensors['ID'] = hex(payval(2,2))
-                sensors['Button'] = format(payval(6), '4b')
+                sensors['Button'] = format(payval(6), '04b')
                 sensors['Temperature'] = -45 + 175 * payval(4,2) / 65536
                 sensors['Humidity'] = payval(7,2) / 65536 * 100
                 sensors['SEQ'] = payval(9)
@@ -269,34 +269,32 @@ while True:
                 printval(sensors, 'Battery Level', 0, '%')
                 printval(sensors, 'RSSI', 0, 'dB')
             isRohmMedal = ''
-            # センサ値の取得処理の終了
-    # 受信後の処理
 
-    # センサ個別値のファイルを保存
-    date=datetime.datetime.today()
-    if savedata:
-        for sensor in sensors:
-            if (sensor.find(' ') >= 0 or len(sensor) <= 5 or sensor == 'Magnetic') and sensor != 'Color R':
-                continue
-            s = date.strftime('%Y/%m/%d %H:%M')
-          # s += ', ' + sensor
-            s += ', ' + str(round(sensors[sensor],3))
-            if sensor == 'Color R':
-                s += ', ' + str(round(sensors['Color R'],3))
-                s += ', ' + str(round(sensors['Color G'],3))
-                s += ', ' + str(round(sensors['Color B'],3))
-                s += ', ' + str(round(sensors['Color IR'],3))
-                sensor = 'Color'
-            if sensor == 'Accelerometer':
-                s += ', ' + str(round(sensors['Accelerometer X'],3))
-                s += ', ' + str(round(sensors['Accelerometer Y'],3))
-                s += ', ' + str(round(sensors['Accelerometer Z'],3))
-            if sensor == 'Geomagnetic':
-                s += ', ' + str(round(sensors['Geomagnetic X'],3))
-                s += ', ' + str(round(sensors['Geomagnetic Y'],3))
-                s += ', ' + str(round(sensors['Geomagnetic Z'],3))
-          # print(s, '-> ' + sensor + '.csv') 
-            save(sensor + '.csv', s)
+            # センサ個別値のファイルを保存
+            date=datetime.datetime.today()
+            if savedata:
+                for sensor in sensors:
+                    if (sensor.find(' ') >= 0 or len(sensor) <= 5 or sensor == 'Magnetic') and sensor != 'Color R':
+                        continue
+                    s = date.strftime('%Y/%m/%d %H:%M')
+                  # s += ', ' + sensor
+                    s += ', ' + str(round(sensors[sensor],3))
+                    if sensor == 'Color R':
+                        s += ', ' + str(round(sensors['Color R'],3))
+                        s += ', ' + str(round(sensors['Color G'],3))
+                        s += ', ' + str(round(sensors['Color B'],3))
+                        s += ', ' + str(round(sensors['Color IR'],3))
+                        sensor = 'Color'
+                    if sensor == 'Accelerometer':
+                        s += ', ' + str(round(sensors['Accelerometer X'],3))
+                        s += ', ' + str(round(sensors['Accelerometer Y'],3))
+                        s += ', ' + str(round(sensors['Accelerometer Z'],3))
+                    if sensor == 'Geomagnetic':
+                        s += ', ' + str(round(sensors['Geomagnetic X'],3))
+                        s += ', ' + str(round(sensors['Geomagnetic Y'],3))
+                        s += ', ' + str(round(sensors['Geomagnetic Z'],3))
+                  # print(s, '-> ' + sensor + '.csv') 
+                    save(sensor + '.csv', s)
 
     # クラウドへの送信処理
     if int(ambient_chid) == 0 or not sensors or time < ambient_interval / interval:
