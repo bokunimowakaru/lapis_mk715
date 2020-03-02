@@ -26,10 +26,7 @@ interval = 5                                            # 動作間隔
 
 from bluepy import btle
 from bluepy.btle import Peripheral
-from sys import argv
 import getpass
-from shutil import chown
-from time import sleep
 
 scanner = btle.Scanner()
 
