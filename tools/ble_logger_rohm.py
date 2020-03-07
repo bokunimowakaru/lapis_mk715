@@ -10,9 +10,10 @@
 #   iot_exp_sensorShield_ble
 #   iot_exp_sensorShield_ble_rh
 #   iot_exp_sensorShield_udp_ble
+#   LAPIS MK715用 cq_ex11_ble_sw, cq_ex12_ble_temp, cq_ex13_ble_hum
 #
-# iot_exp_press_ble や iot_exp_sensorShield_ble が送信するビーコンを受信し
-# ビーコンに含まれる、温度センサ値と気圧センサ値を表示します。
+# cq_ex11_ble_sw, cq_ex12_ble_temp, cq_ex13_ble_hum が送信するビーコンを受信し
+# ビーコンに含まれる、温度センサ値（humは湿度センサ値）を表示します。
 #
 #                                          Copyright (c) 2019-2020 Wataru KUNINO
 ################################################################################
