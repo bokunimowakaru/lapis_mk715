@@ -334,39 +334,34 @@ while True:
 
 ''' 実行結果の一例
 pi@raspberrypi:~ $ cd
-pi@raspberrypi:~ $ git clone http://github.com/bokunimowakaru/rohm_iot_sensor_shield
-pi@raspberrypi:~ $ cd ~/rohm_iot_sensor_shield
-pi@raspberrypi:~/rohm_iot_sensor_shield $ sudo ./ble_logger_sens_scan.py
+pi@raspberrypi:~ $ git clone http://github.com/bokunimowakaru/lapis_mk715
+pi@raspberrypi:~ $ cd ~/lapis_mk715
+pi@raspberrypi:~/lapis_mk715 $ sudo ./ble_logger_rohm.py
 
-Device xx:xx:xx:xx:xx:xx (public), RSSI=-69 dB, Connectable=True
-    1 Flags = 06
-    9 Complete Local Name = R
-  255 Manufacturer = 01004c6cf10093009aff59ff0a0fc40080fee0fcdf521f
-    isRohmMedal   = Sensor Kit RH
-    ID            = 0x1
-    SEQ           = 147
-    Temperature   = 29.03 ℃
-    Pressure      = 1002.359 hPa
-    Illuminance   = 200.8 lx
-    Accelerometer = 0.941 g ( -0.025 -0.041 0.94 g)
-    Geomagnetic   = 90.9 uT ( 19.6 -38.4 -80.0 uT)
-    RSSI          = -69 dB
+Device xx:xx:xx:xx:xx:xx (random), RSSI=-51 dB, Connectable=False
+    isRohmMedal   = Nordic nRF5
+    ID            = 0x59
+    SEQ           = 0
+    Button        = 1111
+    Temperature   = 19.05 ℃
+    Humidity      = 76.96 %
+    RSSI          = -51 dB
 
-Device xx:xx:xx:xx:xx:xx (public), RSSI=-27 dB, Connectable=True
-    1 Flags = 06
-    9 Complete Local Name = espRohm
-  255 Manufacturer = 0100b1e4c90000308147ff0041f1bbbada
-    isRohmMedal   = Sensor Kit espRohm
-    ID            = 0x1
-    SEQ           = 218
-    Temperature   = 29.25 ℃
-    Pressure      = 999 hPa
-    Illuminance   = 167.5 lx
-    Proximity     = 0 count
-    Color RGB     = 19 28 50 %
-    Color IR      = 3 %
-    Accelerometer = 1.016 g ( -0.016 0.0 1.016 g)
-    Geomagnetic   = 99.4 uT ( -15 -69 -70 uT)
-    RSSI          = -27 dB
+Device xx:xx:xx:xx:xx:xx (random), RSSI=-47 dB, Connectable=False
+    isRohmMedal   = Nordic nRF5
+    ID            = 0x59
+    SEQ           = 1
+    Button        = 1111
+    Temperature   = 19.07 ℃
+    Humidity      = 76.96 %
+    RSSI          = -47 dB
 
+Device xx:xx:xx:xx:xx:xx (random), RSSI=-51 dB, Connectable=False
+    isRohmMedal   = Nordic nRF5
+    ID            = 0x59
+    SEQ           = 2
+    Button        = 1111
+    Temperature   = 19.07 ℃
+    Humidity      = 76.96 %
+    RSSI          = -51 dB
 '''
