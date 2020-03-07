@@ -83,7 +83,7 @@ nRF5_SDK_15.3.0_59ac345.zip または nRF5_SDK_16.0.0_98a08e2.zip
 
 
 #define ADVERTISING_LED                 BSP_BOARD_LED_0                         /**< Is on when device is advertising. */
-#define CONNECTED_LED                   BSP_BOARD_LED_0                         /**< Is on when device has connected. */
+#define CONNECTED_LED                   BSP_BOARD_LED_2                         /**< Is on when device has connected. */
 #define LEDBUTTON_LED                   BSP_BOARD_LED_1                         /**< LED to be toggled with the help of the LED Button Service. */
 #define LEDBUTTON_BUTTON                BSP_BUTTON_0                            /**< Button that will trigger the notification event with the LED Button Service */
 
