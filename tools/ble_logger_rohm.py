@@ -336,8 +336,8 @@ while True:
 ''' 実行結果の一例
 pi@raspberrypi:~ $ cd
 pi@raspberrypi:~ $ git clone http://github.com/bokunimowakaru/lapis_mk715
-pi@raspberrypi:~ $ cd ~/lapis_mk715
-pi@raspberrypi:~/lapis_mk715 $ sudo ./ble_logger_rohm.py
+pi@raspberrypi:~ $ cd ~/lapis_mk715/tools
+pi@raspberrypi:~/lapis_mk715/tools $ sudo ./ble_logger_rohm.py
 
 Device xx:xx:xx:xx:xx:xx (random), RSSI=-51 dB, Connectable=False
     isRohmMedal   = Nordic nRF5

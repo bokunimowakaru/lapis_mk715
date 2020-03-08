@@ -97,8 +97,8 @@ while True:
 ''' 実行結果の一例
 pi@raspberrypi:~ $ cd
 pi@raspberrypi:~ $ git clone http://github.com/bokunimowakaru/lapis_mk715
-pi@raspberrypi:~ $ cd ~/lapis_mk715
-pi@raspberrypi:~/lapis_mk715 $ sudo ./ble_nordic_sw.py
+pi@raspberrypi:~ $ cd ~/lapis_mk715/tools
+pi@raspberrypi:~/lapis_mk715/tools $ sudo ./ble_nordic_sw.py
 
 Device xx:xx:xx:xx:xx:xx (random), RSSI=-47 dB, Connectable=True
     9 Complete Local Name = cq_ex21_ble_led
@@ -120,7 +120,7 @@ Handle = 0xd , Notify = 00
 --------------------------------------------------------------------------------
 Gatt Toolを使った接続テストの例
 
-pi@raspberrypi:~/lapis_mk715/tools $ gatttool -I -t random -b xx:xx:xx:xx:xx:xx
+pi@raspberrypi:~ $ gatttool -I -t random -b xx:xx:xx:xx:xx:xx
 [xx:xx:xx:xx:xx:xx][LE]> connect
 Attempting to connect to xx:xx:xx:xx:xx:xx
 Connection successful
