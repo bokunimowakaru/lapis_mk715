@@ -24,7 +24,7 @@ void loop(){                                    // 繰り返し実行する関�
     memset(payload,0,6);                        // 変数payloadの初期化
     
     for(int i=0;i<4;i++){                       // DIPスイッチ0～3の状態を取得
-        payload[2] += (bsp_board_button_state_get(i) << (3 - i) );
+        payload[2] += (bsp_board_button_state_get(i) << i);
     }
     payload[5] = (uint8_t)seq;                  // 送信番号を代入
     advertising_init(payload,6,INTERVAL_ms);    // ビーコンの初期化とデータ代入
