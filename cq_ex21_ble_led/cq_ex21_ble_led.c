@@ -19,7 +19,7 @@ static void cq_lbs_rx_handler(uint8_t value){       // 制御指示をBLE受信�
     }
 }
 
-static uint8_t cq_lbs_tx_handler(uint8_t dipsw){    // DIPスイッチに変化があった
+static uint8_t cq_lbs_tx_handler(uint8_t dipsw){    // DIPスイッチの変化時
     return dipsw;                                   // DIPスイッチの状態値を送信
 }
 
@@ -27,15 +27,15 @@ void setup(){                                       // 起動時に1回だけ実
     NRF_LOG_INFO("cq_ex21_ble_led");                // タイトルのシリアル出力
     ble_stack_init();                               // BLEスタックを初期化
     gap_params_init("cq_ex21_ble_led");             // BLEデバイス名を設定
-    gatt_init();
-    services_init();
-    advertising_init();
-    conn_params_init();
-    advertising_start();
+    gatt_init();                                    // GATTの初期化
+    services_init();                                // BLEサービスの初期化
+    advertising_init();                             // アドバタイジングの初期化
+    conn_params_init();                             // BLE接続設定値の初期化
+    advertising_start();                            // BLEビーコン送信の開始
 }
 
 void loop(){                                        // 繰り返し実行する関数
-    ;                                               // 何もしない
+    ;                                               // (BLE通信処理の繰り返し)
 }
 
 /*******************************************************************************
