@@ -111,7 +111,9 @@ nRF5_SDK_15.3.0_59ac345.zip または nRF5_SDK_16.0.0_98a08e2.zip
 
 void setup(void);
 void loop(void);
-static void cq_lbs_handler(uint8_t value);
+static void cq_lbs_rx_handler(uint8_t value);
+static uint8_t cq_lbs_tx_handler(uint8_t value);
+static uint8_t btn_state;
 
 BLE_LBS_DEF(m_lbs);                                                             /**< LED Button Service instance. */
 NRF_BLE_GATT_DEF(m_gatt);                                                       /**< GATT module instance. */
@@ -288,7 +290,7 @@ static void nrf_qwr_error_handler(uint32_t nrf_error)
 static void led_write_handler(uint16_t conn_handle, ble_lbs_t * p_lbs, uint8_t led_state)
 {
     NRF_LOG_INFO("conn_handle = %d, value = %d",conn_handle,led_state);
-    cq_lbs_handler(led_state);
+    cq_lbs_rx_handler(led_state);
 }
 
 
@@ -489,6 +491,13 @@ static void ble_stack_init(void)
     NRF_SDH_BLE_OBSERVER(m_ble_observer, APP_BLE_OBSERVER_PRIO, ble_evt_handler, NULL);
 }
 
+uint8_t buttons_read(void){
+    btn_state = 0;
+    for(int i=0;i<4;i++){
+	    btn_state |= bsp_board_button_state_get(i) << i;
+    }
+    return btn_state;
+}
 
 /**@brief Function for handling events from the button handler module.
  *
@@ -499,27 +508,44 @@ static void button_event_handler(uint8_t pin_no, uint8_t button_action)
 {
     ret_code_t err_code;
     NRF_LOG_INFO("button pin_no = %d, action = %d", pin_no, button_action);
-
+    int pin_b;
+    
     switch (pin_no)
     {
-        case LEDBUTTON_BUTTON:
-            NRF_LOG_INFO("Send button state change.");
-            err_code = ble_lbs_on_button_change(m_conn_handle, &m_lbs, button_action);
-            if (err_code != NRF_SUCCESS &&
-                err_code != BLE_ERROR_INVALID_CONN_HANDLE &&
-                err_code != NRF_ERROR_INVALID_STATE &&
-                err_code != BLE_ERROR_GATTS_SYS_ATTR_MISSING)
-            {
-                APP_ERROR_CHECK(err_code);
-            }
+        case BSP_BUTTON_0:
+            pin_b = 0;
             break;
-
+        case BSP_BUTTON_1:
+            pin_b = 1;
+            break;
+        case BSP_BUTTON_2:
+            pin_b = 2;
+            break;
+        case BSP_BUTTON_3:
+            pin_b = 3;
+            break;
         default:
             APP_ERROR_HANDLER(pin_no);
-            break;
+            return;
+    }
+    uint8_t prev = btn_state;
+    if(button_action) btn_state |= 0x01 << pin_b;
+    else              btn_state &= ~(0x01 << pin_b);
+    uint8_t state = buttons_read();
+    if(btn_state != state){
+        NRF_LOG_INFO("found illigal button state, prev=%02x, val=%02x, read=%02x",prev,btn_state,state);
+        btn_state = state;
+    }
+    NRF_LOG_INFO("Send button state %02x change to %02x",prev,btn_state);
+    err_code = ble_lbs_on_button_change(m_conn_handle, &m_lbs, cq_lbs_tx_handler(btn_state));
+    if (err_code != NRF_SUCCESS &&
+        err_code != BLE_ERROR_INVALID_CONN_HANDLE &&
+        err_code != NRF_ERROR_INVALID_STATE &&
+        err_code != BLE_ERROR_GATTS_SYS_ATTR_MISSING)
+    {
+        APP_ERROR_CHECK(err_code);
     }
 }
-
 
 /**@brief Function for initializing the button handler module.
  */
@@ -527,10 +553,17 @@ static void buttons_init(void)
 {
     ret_code_t err_code;
 
+    bsp_board_init(BSP_INIT_BUTTONS);
+    uint8_t state = buttons_read();
+    NRF_LOG_INFO("button state = %02x",state);
+    
     //The array must be static because a pointer to it will be saved in the button handler module.
     static app_button_cfg_t buttons[] =
     {
-        {LEDBUTTON_BUTTON, false, BUTTON_PULL, button_event_handler}
+        {BSP_BUTTON_0, false, BUTTON_PULL, button_event_handler},
+        {BSP_BUTTON_1, false, BUTTON_PULL, button_event_handler},
+        {BSP_BUTTON_2, false, BUTTON_PULL, button_event_handler},
+        {BSP_BUTTON_3, false, BUTTON_PULL, button_event_handler}
     };
 
     err_code = app_button_init(buttons, ARRAY_SIZE(buttons),
