@@ -38,11 +38,15 @@ void loop(){                                    // 繰り返し実行する関�
     memset(payload,0,6);                        // 変数payloadの初期化
     
     float temp = getTemp();                     // 温度値を取得
+    if(temp < -45.){                            // -45℃未満のとき
+        NRF_LOG_ERROR("temp =",temp);           // エラー表示
+        temp = -45.;                            // -45℃を代入
+    }
     uint16_t temp16 = (uint16_t)((temp + 45.)*65536./175.); // 2バイトに変換
     payload[0] = (uint8_t)(temp16 % 256);       // 温度値の下位バイトを代入
     payload[1] = (uint8_t)(temp16 / 256);       // 温度値の上位バイトを代入
     for(int i=0;i<4;i++){                       // DIPスイッチ0～3の状態を取得
-        payload[2] += (bsp_board_button_state_get(i) << (3 - i) );
+        payload[2] += (bsp_board_button_state_get(i) << i);
     }
     payload[5] = (uint8_t)seq;                  // 送信番号を代入
     advertising_init(payload,6,INTERVAL_ms);    // ビーコンの初期化とデータ代入
