@@ -32,7 +32,7 @@ void loop(){                                    // 繰り返し実行する関�
     payload[0] = (uint8_t)(temp16 % 256);       // 温度値の下位バイトを代入
     payload[1] = (uint8_t)(temp16 / 256);       // 温度値の上位バイトを代入
     for(int i=0;i<4;i++){                       // DIPスイッチ0～3の状態を取得
-        payload[2] += (bsp_board_button_state_get(i) << (3 - i) );
+        payload[2] += (bsp_board_button_state_get(i) << i);
     }
     payload[3] = (uint8_t)(humi16 % 256);       // 湿度値の下位バイトを代入
     payload[4] = (uint8_t)(humi16 / 256);       // 湿度値の上位バイトを代入
