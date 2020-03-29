@@ -113,9 +113,10 @@ while True:
                     p.writeCharacteristic(0x0010, notified_val)     # 受信した通知値を送信する
 
 ''' 実行結果の一例
+pi@raspberrypi:~ $ sudo pip3 install bluepy
 pi@raspberrypi:~ $ cd
 pi@raspberrypi:~ $ git clone http://github.com/bokunimowakaru/lapis_mk715
-pi@raspberrypi:~ $ cd ~/lapis_mk715/tools
+pi@raspberrypi:~ $ cd lapis_mk715/tools
 pi@raspberrypi:~/lapis_mk715/tools $ sudo ./ble_nordic_sw.py
 
 Device xx:xx:xx:xx:xx:xx (random), RSSI=-47 dB, Connectable=True
@@ -126,14 +127,15 @@ Waiting...
 Handle = 0xd , Notify = 01
     LED = ON
 
-Handle = 0xd , Notify = 00
-    LED = OFF
+Handle = 0xd , Notify = 03
+    LED = ON
 
-Handle = 0xd , Notify = 01
+Handle = 0xd , Notify = 02
     LED = ON
 
 Handle = 0xd , Notify = 00
     LED = OFF
+Device disconnected
 
 --------------------------------------------------------------------------------
 Gatt Toolを使った接続テストの例
