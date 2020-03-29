@@ -55,7 +55,7 @@ while True:
         if getpass.getuser() != 'root':
             print('使用方法: sudo', argv[0])
             exit()
-    if devices is None:
+        sleep(5)
         continue
 
     # 受信データについてBLEデバイス毎の処理
@@ -75,7 +75,11 @@ while True:
             print("    9 Complete Local Name =",isRohmMedal)
             isRohmMedal = ''
             address = dev.addr
-            p = Peripheral(address, addrType='random')
+            try:
+                p = Peripheral(address, addrType='random')
+            except btle.BTLEDisconnectError as e:
+                print(e)
+                break
             p.setDelegate(MyDelegate(DefaultDelegate))
 
             # Setup to turn notifications on
@@ -85,7 +89,12 @@ while True:
             # Main
             print('Waiting...')
             while True:
-                if p.waitForNotifications(1.0):
+                try:
+                    notified = p.waitForNotifications(1.0)
+                except btle.BTLEDisconnectError as e:
+                    print(e)
+                    break
+                if notified:
                     if notified_val == b'\x00':
                         led = b'\x00'
                         print('    LED = OFF')
