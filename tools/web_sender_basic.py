@@ -14,8 +14,8 @@
 #【IoTセンサ用クラウド・サービス Ambient】
 # https://ambidata.io/
 
-ambient_chid='20072'                # ここにAmbientで取得したチャネルIDを入力
-ambient_wkey='e69a37059eb44e64'     # ここにはライトキーを入力
+ambient_chid='00000'                # ここにAmbientで取得したチャネルIDを入力
+ambient_wkey='0123456789abcdef'     # ここにはライトキーを入力
 
 from sys import argv
 import urllib.request                           # HTTP通信ライブラリを組み込む
