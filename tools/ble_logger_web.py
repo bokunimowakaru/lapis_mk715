@@ -2,7 +2,7 @@
 # coding: utf-8
 
 ################################################################################
-# BLE Logger
+# BLE Logger Web Ambientへのデータ送信機能つき
 #
 # LAPIS MK715用 cq_ex11_ble_sw, cq_ex12_ble_temp, cq_ex13_ble_hum
 #
@@ -18,17 +18,30 @@
 #
 #【実行方法】
 #   実行するときは sudoを付与してください
-#       sudo ./ble_logger_basic.py &
+#       sudo ./ble_logger_web.py &
 #
 #【参考文献】
 #   本プログラムを作成するにあたり下記を参考にしました
 #   https://ianharvey.github.io/bluepy-doc/scanner.html
 #   https://www.rohm.co.jp/documents/11401/3946483/sensormedal-evk-002_ug-j.pdf
 
+ambient_chid='00000'                # ここにAmbientで取得したチャネルIDを入力
+ambient_wkey='0123456789abcdef'     # ここにはライトキーを入力
+ambient_interval = 30               # Ambientへの送信間隔
 interval = 1.01                                 # 動作間隔(秒)
+
+################################################################################
+ambient_chid='20071'                # ここにAmbientで取得したチャネルIDを入力
+ambient_wkey='cb3550468f79bb81'     # ここにはライトキーを入力
 
 from bluepy import btle                         # bluepyからbtleを組み込む
 from time import sleep                          # timeからsleepを組み込む
+import urllib.request                           # HTTP通信ライブラリを組み込む
+import json                                     # JSON変換ライブラリを組み込む
+
+url_s = 'https://ambidata.io/api/v2/channels/'+ambient_chid+'/data' # アクセス先
+head_dict = {'Content-Type':'application/json'} # ヘッダを変数head_dictへ
+body_dict = {'writeKey':ambient_wkey}           # ボディ(データ本体)用変数の定義
 
 def payval(num, bytes=1, sign=False):           # 受信データから値を抽出する
     global val                                  # 受信データ用変数valを読み込む
@@ -52,6 +65,10 @@ def printval(dict, name, n, unit):              # 受信値を表示する関数
     print('    ' + name + ' ' * (14 - len(name)) + '=', value, unit)    # 表示
 
 scanner = btle.Scanner()                        # インスタンスscannerを生成
+time = 999                                      # Ambient送信後の経過時間保持用
+if ambient_interval < 30:                       # 送信間隔30(秒)未満のとき
+    ambient_interval = 30                       # 30(秒)を設定
+
 while True:                                     # 永久ループ
     devices = scanner.scan(interval)            # BLEデバイスをスキャンする
     for dev in devices:                         # 見つかった各デバイスについて
@@ -81,6 +98,30 @@ while True:                                     # 永久ループ
             printval(sensors, 'Temperature', 2, '℃')
             printval(sensors, 'Humidity', 2, '%')
             printval(sensors, 'RSSI', 0, 'dB')
+
+    # クラウドへの送信処理(経過時間が送信間隔に満たない時はwhileに戻る)
+    if int(ambient_chid) == 0 or not sensors or time < ambient_interval:
+        time += interval						# 送信後経過時間をカウント
+        continue                                # whileの先頭に戻る
+    body_dict['d1'] = sensors.get('Temperature') # 温度値を項目d1に追加
+    body_dict['d2'] = sensors.get('Humidity')   # 湿度値を項目d2に追加
+    body_dict['d3'] = sensors['Button'][3]      # ボタン状態の最下位桁(b0)
+    body_dict['d4'] = sensors['Button'][2]      # ボタン状態の下位2桁目(b1)
+    body_dict['d5'] = sensors['Button'][1]      # ボタン状態の下位3桁目(b2)
+    body_dict['d6'] = sensors.get('RSSI')
+
+    print(head_dict)                            # 送信ヘッダhead_dictを表示
+    print(body_dict)                            # 送信内容body_dictを表示
+    post = urllib.request.Request(url_s, json.dumps(body_dict).encode(), head_dict)
+                                                # POSTリクエストデータを作成
+    try:                                        # 例外処理の監視を開始
+        res = urllib.request.urlopen(post)      # HTTPアクセスを実行
+    except Exception as e:                      # 例外処理発生時
+        print(e,url_s)                          # エラー内容と変数url_sを表示
+    res.close()                                 # HTTPアクセスの終了
+    time = 0                                    # 変数timeの初期化
+    sensors = dict()                            # 辞書型変数sensorsの初期化
+
 
 ''' 実行結果の一例
 pi@raspberrypi:~ $ cd
