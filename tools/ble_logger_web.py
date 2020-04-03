@@ -98,7 +98,7 @@ while True:                                     # 永久ループ
 
     # クラウドへの送信処理(経過時間が送信間隔に満たない時はwhileに戻る)
     if int(ambient_chid) == 0 or not sensors or time < ambient_interval:
-        time += interval						# 送信後経過時間をカウント
+        time += interval                        # 送信後経過時間をカウント
         continue                                # whileの先頭に戻る
     body_dict['d1'] = sensors.get('Temperature') # 温度値を項目d1に追加
     body_dict['d2'] = sensors.get('Humidity')   # 湿度値を項目d2に追加
