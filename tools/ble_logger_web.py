@@ -136,7 +136,7 @@ Device xx:xx:xx:xx:xx:xx(random), RSSI=-19 dB, Connectable=False
     Humidity      = 82.02 %
     RSSI          = -54 dB
 {'Content-Type': 'application/json'}
-{'d6': '0', 'd4': '0', 'd3': '0', 'writeKey': 'cb3550468f79bb81', 'd1': 19.516830444335938, 'd5': '0', 'd7': -54, 'd2': 82.0159912109375}
+{'d6': '0', 'd4': '0', 'd3': '0', 'writeKey': 'xxxxxxxxxxxxxxxx', 'd1': 19.516830444335938, 'd5': '0', 'd7': -54, 'd2': 82.0159912109375}
 
 Device xx:xx:xx:xx:xx:xx (random), RSSI=-54 dB, Connectable=False
     isRohmMedal   = Nordic nRF5
