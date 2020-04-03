@@ -138,7 +138,7 @@ Device xx:xx:xx:xx:xx:xx(random), RSSI=-19 dB, Connectable=False
 {'Content-Type': 'application/json'}
 {'d6': '0', 'd4': '0', 'd3': '0', 'writeKey': 'cb3550468f79bb81', 'd1': 19.516830444335938, 'd5': '0', 'd7': -54, 'd2': 82.0159912109375}
 
-Device e8:a0:3c:58:2b:90 (random), RSSI=-54 dB, Connectable=False
+Device xx:xx:xx:xx:xx:xx (random), RSSI=-54 dB, Connectable=False
     isRohmMedal   = Nordic nRF5
     ID            = 0x59
     SEQ           = 2
