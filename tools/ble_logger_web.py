@@ -18,7 +18,7 @@
 #
 #【実行方法】
 #   実行するときは sudoを付与してください
-#       sudo ./ble_logger_web.py &
+#       sudo ./ble_logger_web.py
 #
 #【参考文献】
 #   本プログラムを作成するにあたり下記を参考にしました
@@ -29,10 +29,6 @@ ambient_chid='00000'                # ここにAmbientで取得したチャネ�
 ambient_wkey='0123456789abcdef'     # ここにはライトキーを入力
 ambient_interval = 30               # Ambientへの送信間隔
 interval = 1.01                                 # 動作間隔(秒)
-
-################################################################################
-ambient_chid='20071'                # ここにAmbientで取得したチャネルIDを入力
-ambient_wkey='cb3550468f79bb81'     # ここにはライトキーを入力
 
 from bluepy import btle                         # bluepyからbtleを組み込む
 from time import sleep                          # timeからsleepを組み込む
@@ -66,6 +62,7 @@ def printval(dict, name, n, unit):              # 受信値を表示する関数
 
 scanner = btle.Scanner()                        # インスタンスscannerを生成
 time = 999                                      # Ambient送信後の経過時間保持用
+sensors = dict()                                # 辞書型変数sensorsの初期化
 if ambient_interval < 30:                       # 送信間隔30(秒)未満のとき
     ambient_interval = 30                       # 30(秒)を設定
 
@@ -105,10 +102,11 @@ while True:                                     # 永久ループ
         continue                                # whileの先頭に戻る
     body_dict['d1'] = sensors.get('Temperature') # 温度値を項目d1に追加
     body_dict['d2'] = sensors.get('Humidity')   # 湿度値を項目d2に追加
-    body_dict['d3'] = sensors['Button'][3]      # ボタン状態の最下位桁(b0)
-    body_dict['d4'] = sensors['Button'][2]      # ボタン状態の下位2桁目(b1)
-    body_dict['d5'] = sensors['Button'][1]      # ボタン状態の下位3桁目(b2)
-    body_dict['d6'] = sensors.get('RSSI')
+    body_dict['d3'] = sensors['Button'][3]      # DIP1状態,ボタン最下位桁(b0)
+    body_dict['d4'] = sensors['Button'][2]      # DIP2状態,ボタン下位2桁目(b1)
+    body_dict['d5'] = sensors['Button'][1]      # DIP3状態,ボタン下位3桁目(b2)
+    body_dict['d6'] = sensors['Button'][0]      # DIP4状態,ボタン下位3桁目(b3)
+    body_dict['d7'] = sensors.get('RSSI')       # 受信感度(RSSI)レベル
 
     print(head_dict)                            # 送信ヘッダhead_dictを表示
     print(body_dict)                            # 送信内容body_dictを表示
@@ -127,32 +125,25 @@ while True:                                     # 永久ループ
 pi@raspberrypi:~ $ cd
 pi@raspberrypi:~ $ git clone http://github.com/bokunimowakaru/lapis_mk715
 pi@raspberrypi:~ $ cd ~/lapis_mk715/tools
-pi@raspberrypi:~/lapis_mk715/tools $ sudo ./ble_logger_basic.py
+pi@raspberrypi:~/lapis_mk715/tools $ sudo ./ble_logger_web.py
 
-Device xx:xx:xx:xx:xx:xx (random), RSSI=-51 dB, Connectable=False
+Device xx:xx:xx:xx:xx:xx(random), RSSI=-19 dB, Connectable=False
     isRohmMedal   = Nordic nRF5
     ID            = 0x59
     SEQ           = 0
-    Button        = 1111
-    Temperature   = 19.05 ℃
-    Humidity      = 76.96 %
-    RSSI          = -51 dB
+    Button        = 0000
+    Temperature   = 19.52 ℃
+    Humidity      = 82.02 %
+    RSSI          = -54 dB
+{'Content-Type': 'application/json'}
+{'d6': '0', 'd4': '0', 'd3': '0', 'writeKey': 'cb3550468f79bb81', 'd1': 19.516830444335938, 'd5': '0', 'd7': -54, 'd2': 82.0159912109375}
 
-Device xx:xx:xx:xx:xx:xx (random), RSSI=-47 dB, Connectable=False
-    isRohmMedal   = Nordic nRF5
-    ID            = 0x59
-    SEQ           = 1
-    Button        = 1111
-    Temperature   = 19.07 ℃
-    Humidity      = 76.96 %
-    RSSI          = -47 dB
-
-Device xx:xx:xx:xx:xx:xx (random), RSSI=-51 dB, Connectable=False
+Device e8:a0:3c:58:2b:90 (random), RSSI=-54 dB, Connectable=False
     isRohmMedal   = Nordic nRF5
     ID            = 0x59
     SEQ           = 2
-    Button        = 1111
-    Temperature   = 19.07 ℃
-    Humidity      = 76.96 %
-    RSSI          = -51 dB
+    Button        = 0000
+    Temperature   = 19.51 ℃
+    Humidity      = 81.98 %
+    RSSI          = -54 dB
 '''
