@@ -92,6 +92,7 @@ def printval(dict, name, n, unit):
     else:
         print()
 
+# MAIN
 if getpass.getuser() != 'root':
     print('使用方法: sudo', argv[0])
     exit()
@@ -282,8 +283,14 @@ while True:
                     if (sensor.find(' ') >= 0 or len(sensor) <= 5 or sensor == 'Magnetic') and sensor != 'Color R':
                         continue
                     s = date.strftime('%Y/%m/%d %H:%M')
-                  # s += ', ' + sensor
-                    s += ', ' + str(round(sensors[sensor],3))
+                    # s += ', ' + sensor
+                    if sensor == 'Button':
+                        s += ', ' + sensors['Button'][3]
+                        s += ', ' + sensors['Button'][2]
+                        s += ', ' + sensors['Button'][1]
+                        s += ', ' + sensors['Button'][0]
+                    else:
+                        s += ', ' + str(round(sensors[sensor],3))
                     if sensor == 'Color R':
                         s += ', ' + str(round(sensors['Color R'],3))
                         s += ', ' + str(round(sensors['Color G'],3))
@@ -298,7 +305,7 @@ while True:
                         s += ', ' + str(round(sensors['Geomagnetic X'],3))
                         s += ', ' + str(round(sensors['Geomagnetic Y'],3))
                         s += ', ' + str(round(sensors['Geomagnetic Z'],3))
-                  # print(s, '-> ' + sensor + '.csv') 
+                    # print(s, '-> ' + sensor + '.csv') 
                     save(sensor + '.csv', s)
 
     # クラウドへの送信処理
