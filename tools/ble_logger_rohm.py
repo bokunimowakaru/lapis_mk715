@@ -46,6 +46,7 @@ from time import sleep
 import urllib.request                           # HTTP通信ライブラリを組み込む
 import json                                     # JSON変換ライブラリを組み込む
 import datetime
+import subprocess
 
 url_s = 'https://ambidata.io/api/v2/channels/'+ambient_chid+'/data' # アクセス先
 head_dict = {'Content-Type':'application/json'} # ヘッダを変数head_dictへ
@@ -91,6 +92,9 @@ def printval(dict, name, n, unit):
     else:
         print()
 
+if getpass.getuser() != 'root':
+    print('使用方法: sudo', argv[0])
+    exit()
 scanner = btle.Scanner()
 time = 999
 if ambient_interval < 30:
@@ -102,9 +106,9 @@ while True:
         devices = scanner.scan(interval)
     except Exception as e:
         print("ERROR",e)
-        if getpass.getuser() != 'root':
-            print('使用方法: sudo', argv[0])
-            exit()
+        subprocess.call(["hciconfig", "hci0", "down"])
+        sleep(5)
+        subprocess.call(["hciconfig", "hci0", "up"])
         sleep(interval)
         continue
     sensors = dict()
