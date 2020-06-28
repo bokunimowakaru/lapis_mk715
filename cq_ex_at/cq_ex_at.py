@@ -50,7 +50,10 @@ def lapis_at(ser, at, timeout = 0.9):           # ATコマンドを送受信す�
 argc = len(argv)                                # 引数の数をargcへ代入
 port = PORT                                     # シリアルポート名を変数portへ
 if argc >= 2:                                   # 入力パラメータ数の確認
-    if argv[1][0:3].lower() == 'com' and argv[1][3:].isnumeric():
+    if argv[1][0:3].lower() == 'usb' and argv[1][3:].isnumeric():
+        i = int(argv[1][3:])
+        port = '/dev/ttyUSB' + str(i)
+    elif argv[1][0:3].lower() == 'com' and argv[1][3:].isnumeric():
         i = int(argv[1][3:]) - 1
         port = '/dev/ttyS' + str(i)
     elif argv[1][0:5] != '/dev/':
@@ -62,6 +65,7 @@ try:                                            # シリアルポートの初期
     ser = serial.Serial(port, 57600, rtscts = True, timeout = 0.3)
 except Exception as e:                          # 例外処理発生時
     print(e)                                    # エラー内容を表示
+    print('シリアルポートの初期化に失敗しました')
     exit()                                      # プログラムの終了
 
 res = lapis_at(ser, 'AT')                       # [A][T][Enter]送信
@@ -74,12 +78,13 @@ if res != 'CONNECT':                            # 応答値を確認
     print('Bluetooth接続がありませんでした')
     exit()                                      # プログラムの終了
 
-i=0
-while(1):
-    lapis_tx(ser, str(i))
-    res = lapis_rx(ser, INTERVAL)
-    i += 1
-    if res == 'NO CARRIER':
-        break
+res = lapis_rx(ser, 10)                         # 10秒間、受信
+i=0                                             # 送信データ用変数i
+while(1):                                       # 接続中のループ
+    if res == 'NO CARRIER':                     # 切断を検出
+        break                                   # ループを抜ける
+    i += 1                                      # 変数iに1を加算
+    lapis_tx(ser, str(i))                       # 変数iを送信
+    res = lapis_rx(ser, INTERVAL)               # 受信
 print('Bluetooth接続が切断されました')
-ser.close()
+ser.close()                                     # シリアルポートを閉じる
