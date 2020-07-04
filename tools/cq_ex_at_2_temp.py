@@ -33,6 +33,7 @@ class TempSensor():                                     # クラスTempSensorの
     try:                                                # 例外処理の監視を開始
         fp = open(_filename)                            # ファイルを開く
     except Exception as e:                              # 例外処理発生時
+        print('温度センサの初期化に失敗しました')
         raise Exception('SensorDeviceNotFound')         # 例外を応答
 
     def __init__(self):                                 # コンストラクタ作成
@@ -88,13 +89,7 @@ except Exception as e:                          # 例外処理発生時
     print(e)                                    # エラー内容を表示
     print('シリアルポートの初期化に失敗しました')
     exit()                                      # プログラムの終了
-
-try:                                            # 例外処理の監視を開始
-    tempSensor = TempSensor()                   # 温度センサの実体化
-except Exception as e:                          # 例外処理発生時
-    print(e)                                    # エラー内容の表示
-    print('温度センサのの初期化に失敗しました')
-    exit()                                      # プログラムの終了
+tempSensor = TempSensor()                       # 温度センサの実体化
 tempSensor.offset += TEMP_ADJ                   # 補正値を増やす
 
 res = lapis_at(ser, 'AT')                       # [A][T][Enter]送信
