@@ -41,6 +41,7 @@ class TempSensor():                                     # クラスTempSensorの
         self.value = float()                            # 測定結果の保持用
 
     def get(self):                                      # 温度値取得用メソッド
+        self.fp.seek(0)                                 # 温度ファイルの先頭へ
         val = float(self.fp.read()) / 1000              # 温度センサから取得
         val -= self.offset                              # 温度を補正
         val = round(val,1)                              # 丸め演算
@@ -89,18 +90,22 @@ except Exception as e:                          # 例外処理発生時
     print(e)                                    # エラー内容を表示
     print('シリアルポートの初期化に失敗しました')
     exit()                                      # プログラムの終了
+lapis_rx(ser, 3)                                # バッファ破棄のための受信
+
 tempSensor = TempSensor()                       # 温度センサの実体化
 tempSensor.offset += TEMP_ADJ                   # 補正値を増やす
 
-res = lapis_at(ser, 'AT')                       # [A][T][Enter]送信
-if res != 'OK' and res != 'NO CARRIER':         # 応答値を確認
-    print('ATコマンドの応答がありませんでした')
-    exit()                                      # プログラムの終了
+while True:                                     # 繰り返し処理
+    res = lapis_at(ser, 'AT')                   # [A][T][Enter]を実行
+    if res == 'OK' or res == 'CONNECT':         # OKまたは接続中のとき
+        break                                   # whileを抜ける
 
-res = lapis_at(ser, 'ATD', TIMEOUT)             # [A][T][D][Enter]送信
-if res != 'CONNECT':                            # 応答値を確認
-    print('Bluetooth接続がありませんでした')
-    exit()                                      # プログラムの終了
+while res != 'CONNECT':                         # 受信値がCONNECT以外のとき
+    res = lapis_at(ser, 'ATD', TIMEOUT)         # [A][T][D][Enter]送信
+    if res == 'OK':
+        res = lapis_rx(ser, 1)
+        continue
+print('接続に成功しました。Notifyを設定して下さい')
 
 res = lapis_rx(ser, 10)                         # 10秒間、受信
 while(1):                                       # 接続中のループ
@@ -112,3 +117,20 @@ while(1):                                       # 接続中のループ
     res = lapis_rx(ser, INTERVAL)               # 受信
 print('Bluetooth接続が切断されました')
 ser.close()                                     # シリアルポートを閉じる
+
+''' 実行例
+pi@raspberrypi:~/lapis_mk715/tools $ ./cq_ex_at_2_temp.py
+BLE AT Sender (usage: ./cq_ex_at_2_temp.py [port名(省略可)]
+Serial Port : /dev/ttyUSB0
+> AT
+< OK
+> ATD
+< CONNECT
+接続に成功しました。Notifyを設定して下さい
+Temperature = 30.8
+> 30.8
+Temperature = 30.3
+> 30.3
+Temperature = 29.8
+> 29.8
+'''

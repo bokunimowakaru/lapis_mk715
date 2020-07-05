@@ -67,20 +67,22 @@ except Exception as e:                          # 例外処理発生時
     print(e)                                    # エラー内容を表示
     print('シリアルポートの初期化に失敗しました')
     exit()                                      # プログラムの終了
+lapis_rx(ser, 3)                                # バッファ破棄のための受信
 
 res = lapis_at(ser, 'AT')                       # [A][T][Enter]送信
-if res != 'OK' and res != 'NO CARRIER':         # 応答値を確認
+if res != 'OK':                                 # 受信値がOK以外のとき
     print('ATコマンドの応答がありませんでした')
     exit()                                      # プログラムの終了
 
 res = lapis_at(ser, 'ATD', TIMEOUT)             # [A][T][D][Enter]送信
-if res != 'CONNECT':                            # 応答値を確認
-    print('Bluetooth接続がありませんでした')
+if res != 'CONNECT':                            # 受信値がCONNECT以外のとき
+    print('接続に失敗しました')
     exit()                                      # プログラムの終了
 
+print('接続に成功しました。Notifyを設定して下さい')
 res = lapis_rx(ser, 10)                         # 10秒間、受信
 i=0                                             # 送信データ用変数i
-while(1):                                       # 接続中のループ
+while True:                                     # 接続中のループ
     if res == 'NO CARRIER':                     # 切断を検出
         break                                   # ループを抜ける
     i += 1                                      # 変数iに1を加算
@@ -88,3 +90,18 @@ while(1):                                       # 接続中のループ
     res = lapis_rx(ser, INTERVAL)               # 受信
 print('Bluetooth接続が切断されました')
 ser.close()                                     # シリアルポートを閉じる
+
+''' 実行例
+
+pi@raspberrypi:~/lapis_mk715/tools $ ./cq_ex_at_1_test.py
+BLE AT Sender (usage: ./cq_ex_at_1_test.py [port名(省略可)]
+Serial Port : /dev/ttyUSB0
+> AT
+< OK
+> ATD
+< CONNECT
+接続に成功しました。Notifyを設定して下さい
+> 1
+> 2
+> 3
+'''
