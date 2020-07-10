@@ -21,7 +21,7 @@
 PORT = '/dev/ttyUSB0'                           # シリアルポートの初期値
 TIMEOUT = 30.0                                  # 接続までの待機時間(秒)
 INTERVAL = 5.0                                  # データ送信間隔(0より大・秒)
-TEMP_ADJ = +2                                   # 温度補正値
+TEMP_ADJ = +0                                   # 温度補正値
 from sys import argv                            # 引数の入力用ライブラリを追加
 import serial                                   # Python用シリアル通信ライブラリ
 from time import sleep                          # timeからsleepを組み込む
