@@ -25,7 +25,8 @@ ser = serial.Serial(PORT, 57600, rtscts=True, timeout=0.3) # シリアルの初�
 ser.write(('AT\r').encode())                    # [A][T][Enter]送信
 ser.write(('ATD\r').encode())                   # [A][T][D][Enter]送信
 print('> ATD')
-i=0                                             # 送信データ用変数i
+
+i = 0                                           # 送信データ用変数i
 while True:                                     # ループ
     res = ser.read_until().decode().strip()     # 改行(\r\n)まで受信
     if len(res) > 0:                            # 受信文字列がある時
@@ -34,12 +35,13 @@ while True:                                     # ループ
         break                                   # ループを抜ける
     if res == 'CONNECT':                        # 接続を検出
         sleep(10)                               # 10秒間の待ち時間処理
-        i=1                                     # 送信を開始
+        i = 1                                   # 送信を開始
     if i > 0:                                   # i>0のとき
         print('>', str(i))                      # 送信データを表示
         ser.write(str(i).encode())              # シリアル送信を実行
         sleep(5)                                # 5秒間の待ち時間処理
         i += 1                                  # 変数iに1を加算
+
 ser.close()                                     # シリアルポートを閉じる
 
 ''' 実行例
