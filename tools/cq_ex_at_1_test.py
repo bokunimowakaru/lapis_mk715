@@ -50,16 +50,14 @@ def lapis_at(ser, at, timeout = 0.9):           # ATコマンドを送受信す�
 argc = len(argv)                                # 引数の数をargcへ代入
 port = PORT                                     # シリアルポート名を変数portへ
 if argc >= 2:                                   # 入力パラメータ数の確認
-    if argv[1][0:3].lower() == 'usb' and argv[1][3:].isnumeric():
+    if argv[1][0:3].lower() == 'usb' and argv[1][3:].isnumeric(): # Linux用
         i = int(argv[1][3:])
-        port = '/dev/ttyUSB' + str(i)
-    elif argv[1][0:3].lower() == 'com' and argv[1][3:].isnumeric():
+        port = '/dev/ttyUSB' + str(i)           # ポート番号を設定
+    elif argv[1][0:3] == 'com' and argv[1][3:].isnumeric(): # Cygwin用
         i = int(argv[1][3:]) - 1
-        port = '/dev/ttyS' + str(i)
-    elif argv[1][0:5] != '/dev/':
-        port = '/dev/' + argv[1]
-    else:
-        port = argv[1]                          # ポート番号を設定
+        port = '/dev/ttyS' + str(i)             # ポート番号を設定
+    else: # Power Shell用(COMnn) フルパス入力用(/dev/ttymnn)
+        port = argv[1]                          # ポート名を設定
 print('Serial Port :',port)                     # シリアルポート名を表示
 try:                                            # シリアルポートの初期化
     ser = serial.Serial(port, 57600, rtscts = True, timeout = 0.3)
