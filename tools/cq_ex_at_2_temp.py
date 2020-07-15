@@ -2,9 +2,9 @@
 # coding: utf-8
 
 ################################################################################
-# BLE AT Sender cq_ex_at_2_temp Raspberry Pi 専用
+# BLE AT Sender cq_ex_at_2_temp
 #
-# ATコマンド + VSSPP で Raspberry Pi の CPU 温度を送信します。
+# LAPIS MK715開発ボード用 ATコマンド + VSSPP で 温度を送信します。
 #
 # Python用シリアル通信ライブラリ pySerialが必要です
 # pip3 install pyserial
