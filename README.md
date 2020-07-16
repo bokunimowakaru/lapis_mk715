@@ -66,7 +66,7 @@ exapmles for ROHM/LAPIS MK715x1 EK1
 		Bluetooth LEビーコンをラズベリー・パイで受信します。  
 	
 	- ble_logger_rohm.py  
-		センサ値の保存やクラウド・サービスAmbientへの送信なども可能。  
+		上記の機能に加えセンサ値の保存やクラウド・サービスAmbientへの送信なども可能。  
 	
 	次号以降で使用するツールも含まれています。  
 
