@@ -39,7 +39,7 @@ def payval(num, bytes=1, sign=False):           # 受信データから値を抽
     for i in range(0, bytes):                   # バイト数分の値を変数aに代入
         a += (256 ** i) * int(val[(num - 2 + i) * 2 : (num - 1 + i) * 2],16)
     if sign:                                    # 符号つきの場合
-        if a >= 2 ** (bytes * 8 - 1):           # マイナス値のとき
+        if a >= 2 ** (bytes * 8):               # マイナス値のとき
             a -= 2 ** (bytes * 8)               # マイナス値へ変換
     return a                                    # 得られた値aを応答する
 
