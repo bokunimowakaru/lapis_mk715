@@ -1,89 +1,89 @@
 # lapis_mk715
-exapmles for ROHM/LAPIS MK715x1 EK1
+exapmles for ROHM/LAPIS MK715x1 EK1, Nordic nRF52811, nRF52832
 
-## Lapis MK71511/MK71521�p �T���v���E�v���O���� ���^���e
+## Lapis MK71511/MK71521用 サンプル・プログラム 収録内容
 
 - cq_ex01_led
 
-	�T���v��1 LED�̓_�ł�Hello, World!  
-	�f�B�b�v�X�C�b�`DIP1�`3�̏�Ԃɉ����āALED4�`LED7��_�Ő��䂵�܂��B  
+	サンプル1 LEDの点滅とHello, World!  
+	ディップスイッチDIP1～3の状態に応じて、LED4～LED7を点滅制御します。  
 
 - cq_ex02_temp
 
-	�T���v��2 �}�C�R�������̉��x�Z���T  
-	���W���[�������̉��x�Z���T�̒l��ǂݎ��܂�  
+	サンプル2 マイコン内蔵の温度センサ  
+	モジュール内蔵の温度センサの値を読み取ります  
 
 - cq_ex03_hum
 
-	�T���v��3 I2C�f�B�W�^���E�C���^�[�t�F�[�X���ځE�����x�Z���T  
-	I2C�ڑ��̉����x�Z���T SILICON LABS�� Si7021 �̒l��ǂݎ��܂�  
+	サンプル3 I2Cディジタル・インターフェース搭載・温湿度センサ  
+	I2C接続の温湿度センサ SILICON LABS社 Si7021 の値を読み取ります  
 
 - cq_ex11_ble_sw
 
-	�T���v��4 Bluetooth LE�r�[�R���̑��M  
-	���W���[�����DIP�X�C�b�`(4bit)�̏�Ԃ�BLE�r�[�R���ő��M���܂�  
+	サンプル4 Bluetooth LEビーコンの送信  
+	モジュール上のDIPスイッチ(4bit)の状態をBLEビーコンで送信します  
 
 - cq_ex12_ble_temp
 
-	�T���v��5 ���x���r�[�R�����M  
-	���W���[�������̉��x�Z���T�ő��肵�����x�l��BLE�r�[�R���ő��M���܂�  
+	サンプル5 温度をビーコン送信  
+	モジュール内蔵の温度センサで測定した温度値をBLEビーコンで送信します  
 
 - cq_ex12_ble_temp_le
 
-	�T���v��5-LE ���x���r�[�R�����M �����d�͔�  
-	���W���[�������̉��x�Z���T�ő��肵�����x�l��BLE���M���܂�  
+	サンプル5-LE 温度をビーコン送信 低消費電力版  
+	モジュール内蔵の温度センサで測定した温度値をBLE送信します  
 
 - cq_ex12_ble_temp_gatt
 
-	�T���v��5-GATT ���x���r�[�R�����M (�Ǝ�)GATT�Ή���  
-	���W���[�������̉��x�Z���T�ő��肵�����x�l��(�Ǝ�)GATT�Œ񋟂��܂�  
+	サンプル5-GATT 温度をビーコン送信 (独自)GATT対応版  
+	モジュール内蔵の温度センサで測定した温度値を(独自)GATTで提供します  
 
 - cq_ex13_ble_hum
 
-	�T���v��6 I2C�ڑ��Z���T�l���r�[�R���ő��M  
-	I2C�ڑ��̉����x�Z���T�ő��肵�����x�l�Ǝ��x�l��BLE���M���܂�  
+	サンプル6 I2C接続センサ値をビーコンで送信  
+	I2C接続の温湿度センサで測定した温度値と湿度値をBLE送信します  
 
 - cq_ex13_ble_hum_le
 
-	�T���v��6-LE I2C�ڑ��Z���T�l���r�[�R���ő��M �����d�͔�  
-	I2C�ڑ��̉����x�Z���T�ő��肵�����x�l�Ǝ��x�l��BLE���M���܂�  
+	サンプル6-LE I2C接続センサ値をビーコンで送信 低消費電力版  
+	I2C接続の温湿度センサで測定した温度値と湿度値をBLE送信します  
 
-- cq_ex21_ble_led (�����ȍ~�Ŏg�p)
+- cq_ex21_ble_led (次号以降で使用)
 
-	�T���v��7 BLE GATT�ɂ��o�����ʐM�@  
-	���W���[�����LED�̏�Ԃ�BLE�ŉ��u���䂵�܂�  
+	サンプル7 BLE GATTによる双方向通信①  
+	モジュール上のLEDの状態をBLEで遠隔制御します  
 
-- cq_ex22_ble_sw (�����ȍ~�Ŏg�p)
+- cq_ex22_ble_sw (次号以降で使用)
 
-	�T���v��8 BLE GATT�ɂ��o�����ʐM�A  
-	���W���[�����DIP�X�C�b�`����PIR�Z���T�̏�ԕω���BLE�Œʒm���܂�  
+	サンプル8 BLE GATTによる双方向通信②  
+	モジュール上のDIPスイッチ又はPIRセンサの状態変化をBLEで通知します  
 
 - tools
 
-	�e��T���v���E�v���O�����̓���m�F�����邽�߂̃c�[���ނł��B  
+	各種サンプル・プログラムの動作確認をするためのツール類です。  
 	
 	- ble_logger_basic.py  
-		Bluetooth LE�r�[�R�������Y�x���[�E�p�C�Ŏ�M���܂��B  
+		Bluetooth LEビーコンをラズベリー・パイで受信します。  
 	
 	- ble_logger_rohm.py  
-		��L�̋@�\�ɉ����Z���T�l�̕ۑ���N���E�h�E�T�[�r�XAmbient�ւ̑��M�Ȃǂ��\�B  
+		上記の機能に加えセンサ値の保存やクラウド・サービスAmbientへの送信なども可能。  
 	
-	�����ȍ~�Ŏg�p����c�[�����܂܂�Ă��܂��B  
+	次号以降で使用するツールも含まれています。  
 
 - LICENSE
 
-	�{�\�t�g�E�F�A��z�z����Ƃ��͓������Ă��������B  
+	本ソフトウェアを配布するときは同梱してください。  
 
 - README.md
 
-	�{�������ł��B  
+	本説明書です。  
 
-## ���C�Z���X
+## ライセンス
 
-�\�[�X���X�g���ƂɃ��C�Z���X���قȂ�܂��B  
-���C�Z���X�ɂ��Ă͊e�\�[�X���X�g�Ȃ�тɊe�t�H���_���̃t�@�C���ɋL�ڂ̒ʂ�ł��B  
-�g�p�E�ύX�E�z�z�͉\�ł����A�����\�����c���Ă��������B  
-�܂��A�񋟏���z�z�\�t�g�ɂ���Đ����������Ȃ��Q�ɂ��Ă��C��؁C�⏞�������܂���B  
+ソースリストごとにライセンスが異なります。  
+ライセンスについては各ソースリストならびに各フォルダ内のファイルに記載の通りです。  
+使用・変更・配布は可能ですが、権利表示を残してください。  
+また、提供情報や配布ソフトによって生じたいかなる被害についても，一切，補償いたしません。  
 
 Copyright (c) 2020 Wataru KUNINO
 https://bokunimo.net/
