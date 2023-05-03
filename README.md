@@ -15,7 +15,7 @@ ROHM/LAPIS MK715x1 を使った入門書「ローコストIoT センサ・ネッ
 動かしてみた後に、エレキジャックIoT No.3を購入していただくことで、より理解が深まると思います。  
 
 - Bluetooth LE マイコン搭載 LAPIS MK715 開発ボードによる  
-PDF版 ローコストIoT センサ・ネットワーク プログラミング入門](https://bokunimo.net/cq/nrf528)  
+PDF版 [ローコストIoT センサ・ネットワーク プログラミング入門](https://bokunimo.net/cq/nrf528)  
 
 - 用途別サンプル・プログラム6 本で学びながら試すBLE プログラミング  
 アマゾン販売サイト：　　　[エレキジャックIoT No.3 Bluetooth通信プログラミング 単行本](https://amzn.to/3Z3Tzyp)  
@@ -108,5 +108,17 @@ PDF版 ローコストIoT センサ・ネットワーク プログラミング�
 使用・変更・配布は可能ですが、権利表示を残してください。  
 また、提供情報や配布ソフトによって生じたいかなる被害についても，一切，補償いたしません。  
 
-Copyright (c) 2020 Wataru KUNINO
-https://bokunimo.net/
+Copyright (c) 2020-2023 Wataru KUNINO
+<https://bokunimo.net/>
+
+----------------------------------------------------------------
+
+## GitHub Pages (This Document)
+* [https://git.bokunimo.com/lapis_mk715/](https://git.bokunimo.com/lapis_mk715/)  
+
+----------------------------------------------------------------
+
+# git.bokunimo.com GitHub Pages site
+[http://git.bokunimo.com/](http://git.bokunimo.com/)  
+
+----------------------------------------------------------------
