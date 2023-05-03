@@ -6,19 +6,21 @@ This repository contains code exapmles including project files, for Segger Embed
 ## 詳細
 
 無料の統合開発環境IDE Segger Embedded Studio 用のプロジェクト・ファイル一式を含む、サンプル・プログラム集です。  
+本レポジトリ内のプログラム用の解説書も公開しています。  
 
-## 解説書
+## 解説書(無料PDF版＋市販雑誌)
 
 ROHM/LAPIS MK715x1 を使った入門書「ローコストIoT センサ・ネットワーク プログラミング入門」を公開しています。  
 本入門書は、エレキジャックIoT No.3 P.40～P.67「用途別サンプル・プログラム6 本で学びながら試すBLE プログラミング」の後編です。  
-エレキジャックIoT No.3で紹介したプログラムの説明は含まれていませんが、本書だけでもプログラムを動かしてみることは可能です。動作を試した後に、エレキジャックIoT No.3を購入していただくことで、より理解が深まると思います。  
+エレキジャックIoTで紹介したプログラムの説明は含まれていませんが、本書だけでもプログラムを動かしてみることは可能です。
+動作を試した後に、エレキジャックIoTを購入していただくことで、より理解が深まると思います。  
 
 - Bluetooth LE マイコン搭載 LAPIS MK715 開発ボードによる  
-PDF版 [ローコストIoT センサ・ネットワーク プログラミング入門](https://bokunimo.net/cq/nrf528)  
+[ローコストIoT センサ・ネットワーク プログラミング入門](https://bokunimo.net/cq/nrf528) 【無料PDF版】  
 ※ご注意：エレキジャックIoTに掲載したプログラムの説明はありません  
 
 - 用途別サンプル・プログラム6 本で学びながら試すBLE プログラミング  
-アマゾン販売サイト：　　　[エレキジャックIoT No.3 Bluetooth通信プログラミング 単行本](https://amzn.to/3Z3Tzyp)  
+アマゾン販売サイト：　　　[エレキジャックIoT No.3 特集Bluetooth通信プログラミング](https://amzn.to/3Z3Tzyp) 【市販雑誌】  
 筆者ブログ内の紹介ページ：[bokunimo.net/blog内の紹介ページ](https://bokunimo.net/blog/esp/883/#Bluetooth_LE%E3%83%9E%E3%82%A4%E3%82%B3%E3%83%B3%E6%90%AD%E8%BC%89LAPIS_MK715%E9%96%8B%E7%99%BA%E3%83%9C%E3%83%BC%E3%83%89_%E7%94%A8%E9%80%94%E5%88%A5%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%83%BB%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A06%E6%9C%AC%E3%81%A7%E5%AD%A6%E3%81%B3%E3%81%AA%E3%81%8C%E3%82%89%E8%A9%A6%E3%81%99BLE%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0)  
 出版社の紹介ページ：　　　[eleki-jack-iot.com 内の紹介ページ](https://eleki-jack-iot.com/2020/07/28/bluetooth-le%e3%83%9e%e3%82%a4%e3%82%b3%e3%83%b3%e6%90%ad%e8%bc%89-lapis-mk715%e9%96%8b%e7%99%ba%e3%83%9c%e3%83%bc%e3%83%89-%e7%94%a8%e9%80%94%e5%88%a5%e3%82%b5%e3%83%b3%e3%83%97%e3%83%ab%e3%83%bb/)  
 
