@@ -28,27 +28,37 @@ ROHM/LAPIS MK715x1 を使った入門書「ローコストIoT センサ・ネッ
 
 本レポジトリに含まれているコンテンツは以下の通りです。  
 
-- cq_ex01_led
+- cq_ex_at_1_test_basic.py (エレキジャックIoT No.5で解説)
+
+	動作確認用プログラム① タイマー送信  
+	1から順に増加する数値を5秒ごとに Bluetooth LE で送信します  
+
+- cq_ex_at_2_temp.py (エレキジャックIoT No.5で解説)
+
+	動作確認用プログラム② 温度センサ  
+	温度値を Bluetooth LE で送信する 温度センサ機器用プログラムです  
+
+- cq_ex01_led (エレキジャックIoT No.3で解説)
 
 	サンプル1 LEDの点滅とHello, World!  
 	ディップスイッチDIP1～3の状態に応じて、LED4～LED7を点滅制御します。  
 
-- cq_ex02_temp
+- cq_ex02_temp (エレキジャックIoT No.3で解説)
 
 	サンプル2 マイコン内蔵の温度センサ  
 	モジュール内蔵の温度センサの値を読み取ります  
 
-- cq_ex03_hum
+- cq_ex03_hum (エレキジャックIoT No.3で解説)
 
 	サンプル3 I2Cディジタル・インターフェース搭載・温湿度センサ  
 	I2C接続の温湿度センサ SILICON LABS社 Si7021 の値を読み取ります  
 
-- cq_ex11_ble_sw
+- cq_ex11_ble_sw (エレキジャックIoT No.3で解説)
 
 	サンプル4 Bluetooth LEビーコンの送信  
 	モジュール上のDIPスイッチ(4bit)の状態をBLEビーコンで送信します  
 
-- cq_ex12_ble_temp
+- cq_ex12_ble_temp (エレキジャックIoT No.3で解説)
 
 	サンプル5 温度をビーコン送信  
 	モジュール内蔵の温度センサで測定した温度値をBLEビーコンで送信します  
@@ -63,7 +73,7 @@ ROHM/LAPIS MK715x1 を使った入門書「ローコストIoT センサ・ネッ
 	サンプル5-GATT 温度をビーコン送信 (独自)GATT対応版  
 	モジュール内蔵の温度センサで測定した温度値を(独自)GATTで提供します  
 
-- cq_ex13_ble_hum
+- cq_ex13_ble_hum (エレキジャックIoT No.3で解説)
 
 	サンプル6 I2C接続センサ値をビーコンで送信  
 	I2C接続の温湿度センサで測定した温度値と湿度値をBLE送信します  
@@ -73,15 +83,24 @@ ROHM/LAPIS MK715x1 を使った入門書「ローコストIoT センサ・ネッ
 	サンプル6-LE I2C接続センサ値をビーコンで送信 低消費電力版  
 	I2C接続の温湿度センサで測定した温度値と湿度値をBLE送信します  
 
-- cq_ex21_ble_led (無料PDF版で使用)
+- cq_ex21_ble_led (無料PDF版で解説)
 
 	サンプル7 BLE GATTによる双方向通信①  
 	モジュール上のLEDの状態をBLEで遠隔制御します  
 
-- cq_ex22_ble_sw (無料PDF版で使用)
+- cq_ex22_ble_sw (無料PDF版で解説)
 
 	サンプル8 BLE GATTによる双方向通信②  
 	モジュール上のDIPスイッチ又はPIRセンサの状態変化をBLEで通知します  
+
+- example09_ambient.py (無料PDF版で解説)
+
+サンプル9 ラズベリー・パイからAmbientへ任意の数値を送信  
+
+- ble_logger_web.py (無料PDF版で解説)
+
+サンプル10 Blutooth LE ビーコンを Ambientへ転送するプログラム  
+IoTセンサが送信するセンサ値をラズベリー・パイで受信し，中継します  
 
 - tools
 
