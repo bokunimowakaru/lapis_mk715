@@ -10,7 +10,7 @@ This repository contains code exapmles including project files, for Segger Embed
 無料の統合開発環境IDE Segger Embedded Studio 用のプロジェクト・ファイル一式を含む、サンプル・プログラム集です。  
 本レポジトリ内のプログラム用の解説書も公開しています。  
 
-## 解説書(無料PDF版＋市販雑誌)
+## 解説書(無料PDF版＋市販雑誌) written in Japanese
 
 ROHM/LAPIS MK715x1 を使った入門書「ローコストIoT センサ・ネットワーク プログラミング入門」を公開しています。  
 本入門書は、エレキジャックIoT No.3 P.40～P.67「用途別サンプル・プログラム6 本で学びながら試すBLE プログラミング」の後編です。  
