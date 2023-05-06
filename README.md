@@ -3,6 +3,8 @@ Code Exapmles for ROHM/LAPIS MK715x1 EK1, Nordic nRF52811, nRF52832.
 
 This repository contains code exapmles including project files, for Segger Embedded Studio IDE (Integrated Development Environment).  
 
+[Translate to English (Google Translate)](https://git-bokunimo-com.translate.goog/lapis_mk715/?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=ja&_x_tr_pto=wapp)
+
 ## 詳細
 
 無料の統合開発環境IDE Segger Embedded Studio 用のプロジェクト・ファイル一式を含む、サンプル・プログラム集です。  
